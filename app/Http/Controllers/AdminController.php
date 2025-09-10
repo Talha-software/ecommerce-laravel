@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\products;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -38,5 +39,40 @@ class AdminController extends Controller
         $category->category = $request->category;
         $category->save();
         return redirect('/view_Category')->with('session_message','Category Updated Successfully');
+    }
+
+
+    public function addProducts(){
+        $categories=Category::all();
+        return view('admin.addproducts',compact('categories'));
+    }
+
+
+    public function postAddProducts(Request $request){
+        $product=new Products();
+        $product->product_name = $request->product_name;
+        $product->product_price = $request->product_price;
+        $product->product_description = $request->product_description;
+        $product->product_quantity = $request->product_quantity;
+
+
+        $image=$request->product_image;
+        if($image){
+            $imageName=time().'.'.$image->getClientOriginalExtension();
+            $product->product_image=$imageName;
+        }
+
+
+        $product->product_category = $request->product_category;
+        $product->save();
+
+
+        if($image && $product->save()){
+            $image->move('product_images',$imageName);
+        }
+
+        return redirect()->back()->with('session_message','Product added Successfully');
+
+
     }
 }
