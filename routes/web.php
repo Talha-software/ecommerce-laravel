@@ -27,7 +27,7 @@ Route::middleware('admin','auth')->group(function () {
     Route::post('/update_Category/{id}', [AdminController::class, 'postEditCategory'])->name('admin.updateCategory');
     Route::get('/add_products', [AdminController::class, 'addProducts'])->name('admin.addProducts');
     Route::post('/add_products', [AdminController::class, 'postAddProducts'])->name('admin.postAddProducts');
-
+    Route::get('/view_products', [AdminController::class, 'viewProducts'])->name('admin.viewProducts');
 
 });
 

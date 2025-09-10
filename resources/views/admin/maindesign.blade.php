@@ -150,6 +150,9 @@
 
 
             @yield('addproducts')
+
+
+            @yield('viewproducts')
             <footer class="footer">
                 <div class="footer__block block no-margin-bottom">
                     <div class="container-fluid text-center">
