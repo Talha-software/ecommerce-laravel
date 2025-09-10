@@ -80,7 +80,7 @@ class AdminController extends Controller
 
 
     public function viewProducts(){
-        $products=Products::all();
+        $products=Products::paginate(2);
         return view('admin.viewproducts',compact('products'));
     }
 }
