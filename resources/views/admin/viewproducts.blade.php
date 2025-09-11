@@ -30,8 +30,8 @@
         <td>{{$product->product_price}}</td>
         <td><img src="{{asset('product_images/'.$product->product_image)}}" alt="" width="100px"></td>
         <td>
-        <a href="" class="btn btn-primary">Edit</a>
-            <a href="" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete this category?')";>Delete</a>
+        <a href="{{route('admin.productEdit',$product->id)}}" class="btn btn-primary">Edit</a>
+            <a href="{{route('admin.deleteproduct',$product->id)}}" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete this category?')";>Delete</a>
         </td> 
     </tr>
     @endforeach

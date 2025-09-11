@@ -28,6 +28,10 @@ Route::middleware('admin','auth')->group(function () {
     Route::get('/add_products', [AdminController::class, 'addProducts'])->name('admin.addProducts');
     Route::post('/add_products', [AdminController::class, 'postAddProducts'])->name('admin.postAddProducts');
     Route::get('/view_products', [AdminController::class, 'viewProducts'])->name('admin.viewProducts');
+    Route::get('/delete_product/{id}', [AdminController::class, 'deleteProduct'])->name('admin.deleteproduct');
+    Route::get('/edit_Product/{id}', [AdminController::class, 'productEdit'])->name('admin.productEdit');
+    Route::post('/update_Product/{id}', [AdminController::class, 'updateProduct'])->name('admin.updateProduct');
+
 
 });
 

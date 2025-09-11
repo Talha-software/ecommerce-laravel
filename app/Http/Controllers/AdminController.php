@@ -83,4 +83,49 @@ class AdminController extends Controller
         $products=Products::paginate(2);
         return view('admin.viewproducts',compact('products'));
     }
+
+        public function deleteProduct($id){
+        $product=Products::findorFail($id);
+        $imagePath = 'product_images/'.$product->product_image;
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+        if($product){
+            $product->delete();
+            return redirect()->back()->with('session_message','Category Deleted Successfully');
+        }else{
+            return redirect()->back()->with('session_message','No Category Found');
+        }
+    }
+
+    public function productEdit($id){
+        $product=Products::findorFail($id);
+        $categories=Category::all();
+        return view('admin.editProduct',compact('product','categories'));
+    }
+
+    public function updateProduct(Request $request,$id){
+        $product=Products::findorFail($id);
+        $product->product_name = $request->product_name;
+        $product->product_price = $request->product_price;
+        $product->product_description = $request->product_description;
+        $product->product_quantity = $request->product_quantity;
+        $product->product_category = $request->product_category;
+        $image=$request->product_image;
+        if($image){
+            $imageName=time().'.'.$image->getClientOriginalExtension();
+            $product->product_image=$imageName;
+        }
+
+
+        $product->product_category = $request->product_category;
+        $product->save();
+
+
+        if($image && $product->save()){
+            $image->move('product_images',$imageName);
+        }
+
+        return redirect()->back()->with('session_message','Product added Successfully');
+    }
 }
