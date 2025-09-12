@@ -10,6 +10,22 @@
     </div>
 @endif
 
+
+            <div class="search-panel">
+                <div class="search-inner d-flex align-items-center justify-content-center">
+                    
+                    <form  action="{{route('admin.search')}}" name="search" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <input type="search" name="search" placeholder="What are you searching for...">
+                            <button type="submit" class="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
 <table class="table">
   <thead>
     <tr>

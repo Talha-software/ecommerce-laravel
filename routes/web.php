@@ -5,9 +5,8 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
-    return view('index');
-})->name("index");
+Route::get('/', [userController::class, 'home'])->name("index");
+Route::get('/product/{id}', [userController::class, 'productDetail'])->name('product.detail');
 
 Route::get('/dashboard', [userController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -31,7 +30,7 @@ Route::middleware('admin','auth')->group(function () {
     Route::get('/delete_product/{id}', [AdminController::class, 'deleteProduct'])->name('admin.deleteproduct');
     Route::get('/edit_Product/{id}', [AdminController::class, 'productEdit'])->name('admin.productEdit');
     Route::post('/update_Product/{id}', [AdminController::class, 'updateProduct'])->name('admin.updateProduct');
-
+    Route::any('/view_products', [AdminController::class, 'search'])->name('admin.search');
 
 });
 
