@@ -6,9 +6,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', [userController::class, 'home'])->name("index");
+Route::get('/all_products', [userController::class, 'allProducts'])->name("products_detail_page");
 Route::get('/product/{id}', [userController::class, 'productDetail'])->name('product.detail');
 
 Route::get('/dashboard', [userController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/addtocart/{id}', [userController::class, 'add_to_cart'])->middleware(['auth', 'verified'])->name('add_to_cart');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
