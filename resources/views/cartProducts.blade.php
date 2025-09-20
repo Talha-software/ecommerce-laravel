@@ -166,6 +166,9 @@
                 </h2>
             </div>
             <div class="row">
+            @php
+                $price=0
+            @endphp
                <table class="table">
   <thead>
     <tr>
@@ -174,18 +177,31 @@
       <th scope="col">Product image</th>
     </tr>
   </thead>
-  <tbody>
+
     @foreach($cart as $cart_product)
     <tr>
         <th scope="row">{{$cart_product->product->product_name}}</th>
         <td>{{$cart_product->product->product_price}}</td>
         <td><img src="{{asset('product_images/'.$cart_product->product->product_image)}}" alt="" width="100px"></td>
         <td><a href="{{route('deletecartproduct',$cart_product->id)}}" class="btn btn-danger">Delete</a></td>
-    </tr>
 
-  </tbody>
-</table>
+
+
+
+    @php
+        
+    $price=$price + $cart_product->product->product_price;
+    @endphp
     @endforeach
+</table>
+        </tr>
+
+        <tr>
+        <td></td>
+        <td></td>
+        <td>Total price</td>
+        <td>={{$price}}</td>
+    </tr>
             </div>
 
         </div>
