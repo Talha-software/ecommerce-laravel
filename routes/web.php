@@ -12,6 +12,7 @@ Route::get('/product/{id}', [userController::class, 'productDetail'])->name('pro
 Route::get('/dashboard', [userController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/cartProducts', [userController::class, 'cartProducts'])->middleware(['auth', 'verified'])->name('cartProducts');
 Route::get('/addtocart/{id}', [userController::class, 'add_to_cart'])->middleware(['auth', 'verified'])->name('add_to_cart');
+Route::get('/deletecartproduct/{id}', [userController::class, 'deletecartproduct'])->middleware(['auth', 'verified'])->name('deletecartproduct');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

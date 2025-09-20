@@ -180,6 +180,7 @@
         <th scope="row">{{$cart_product->product->product_name}}</th>
         <td>{{$cart_product->product->product_price}}</td>
         <td><img src="{{asset('product_images/'.$cart_product->product->product_image)}}" alt="" width="100px"></td>
+        <td><a href="{{route('deletecartproduct',$cart_product->id)}}" class="btn btn-danger">Delete</a></td>
     </tr>
 
   </tbody>
