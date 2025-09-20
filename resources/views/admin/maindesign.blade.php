@@ -142,7 +142,7 @@
             @yield('addproducts')
 
 
-            @yield('viewproducts')
+           
 
 
             @yield('editproduct')

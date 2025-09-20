@@ -415,7 +415,7 @@
                         </a>
                         @endif
                         <a href="">
-                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                            <i class="fa fa-shopping-bag" aria-hidden="true">{{$count}}</i>
                         </a>
                         <form class="form-inline ">
                             <button class="btn nav_search-btn" type="submit">
@@ -512,6 +512,7 @@
                 </a>
                 <a href="">
                     <i class="fa fa-instagram" aria-hidden="true"></i>
+
                 </a>
                 <a href="">
                     <i class="fa fa-youtube" aria-hidden="true"></i>

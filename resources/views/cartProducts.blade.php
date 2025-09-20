@@ -1,3 +1,15 @@
+{{-- @extends('index') --}}
+
+
+{{-- @section('viewcart_products') --}}
+
+{{-- @endsection --}}
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -89,7 +101,7 @@
                             </span>
                         </a>
                         @endif
-                        <a href="{{route('cartProducts')}}">
+                        <a href="">
                             <i class="fa fa-shopping-bag" aria-hidden="true">{{$count}}</i>
                         </a>
                         <form class="form-inline ">
@@ -154,40 +166,27 @@
                 </h2>
             </div>
             <div class="row">
-                @foreach ($products as $product )
+               <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Product Name</th>
+      <th scope="col">Product price</th>
+      <th scope="col">Product image</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($cart as $cart_product)
+    <tr>
+        <th scope="row">{{$cart_product->product->product_name}}</th>
+        <td>{{$cart_product->product->product_price}}</td>
+        <td><img src="{{asset('product_images/'.$cart_product->product->product_image)}}" alt="" width="100px"></td>
+    </tr>
 
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="box">
-                        <a href="{{route('product.detail', $product->id)}}">
-                            <div class="img-box">
-                                <img src="{{asset('product_images/'.$product->product_image)}}" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h6>
-                                    {{$product->product_name}}
-                                </h6>
-                                <h6>
-                                    Price
-                                    <span>
-                                        ${{$product->product_price}}
-                                    </span>
-                                </h6>
-                            </div>
-                            <div class="new">
-                                <span>
-                                    New
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                @endforeach
+  </tbody>
+</table>
+    @endforeach
             </div>
-            <div class="btn-box">
-                <a href="{{route('index')}}">
-                    View latest Products
-                </a>
-            </div>
+
         </div>
     </section>
 
